@@ -9,6 +9,7 @@ public class Cube : MonoBehaviour
 
     private Spawner _spawner;
     private MeshRenderer _meshRenderer;
+    private Coroutine _coroutine;
 
     private void Awake()
     {
@@ -17,8 +18,8 @@ public class Cube : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.TryGetComponent<Platform>(out Platform platform))
-            StartCoroutine(LifeTimer(RandomNumber()));
+        if (collision.gameObject.TryGetComponent<Platform>(out Platform platform) && _coroutine == null)
+            _coroutine = StartCoroutine(LifeTimer(RandomNumber()));
     }
 
     public void AddSpawner(Spawner spawner)
@@ -39,9 +40,9 @@ public class Cube : MonoBehaviour
     {
         WaitForSeconds wait = new WaitForSeconds(time);
 
-        _meshRenderer.material = _blackBlueMaterial;
+        _meshRenderer.material.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
+
         yield return wait;
-        _spawner.ReleaseCube(this.gameObject);
-        _meshRenderer.material = _blueMaterial;
+        _spawner.ReleaseCube(gameObject);
     }
 }

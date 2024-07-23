@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -22,6 +23,16 @@ public class Spawner : MonoBehaviour
         maxSize: _poolSize);
     }
 
+    private void Start()
+    {
+        StartCoroutine(FillPool(_repeatingRate));
+    }
+
+    public void ReleaseCube(GameObject obj)
+    {
+        _pool.Release(obj);
+    }
+
     private void ActionOnGet(GameObject obj)
     {
         float randomX = Random.Range(-10, 10);
@@ -33,18 +44,14 @@ public class Spawner : MonoBehaviour
         obj.SetActive(true);
     }
 
-    private void Start()
+    private IEnumerator FillPool(float time)
     {
-        InvokeRepeating(nameof(GetCube), 0f, _repeatingRate);
-    }
+        WaitForSeconds wait = new WaitForSeconds(time);
 
-    public void ReleaseCube(GameObject obj)
-    {
-        _pool.Release(obj);
-    }
-
-    private void GetCube()
-    {
-        _pool.Get();
+        while (_pool.CountAll <= _poolCapacity)
+        {
+            yield return wait;
+            _pool.Get();
+        }
     }
 }

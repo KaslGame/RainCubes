@@ -442,8 +442,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _prefab: {fileID: 8055140864536081189, guid: 39fafb7b769856944b77fea3d89c1d22, type: 3}
   _repeatingRate: 0.5
-  _poolCapacity: 20
-  _poolSize: 20
+  _poolCapacity: 5
+  _poolSize: 10
 --- !u!4 &1679172133
 Transform:
   m_ObjectHideFlags: 0
