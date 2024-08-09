@@ -43,6 +43,7 @@ public class Cube : MonoBehaviour
         _meshRenderer.material.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
 
         yield return wait;
-        _spawner.ReleaseCube(gameObject);
+        _spawner.ReleaseCube(this);
+        _coroutine = null;
     }
 }

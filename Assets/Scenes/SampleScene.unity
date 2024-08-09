@@ -440,9 +440,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d7bdf64ce475a45a2842e35b3adfec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 8055140864536081189, guid: 39fafb7b769856944b77fea3d89c1d22, type: 3}
+  _prefab: {fileID: 8055140864536081208, guid: 39fafb7b769856944b77fea3d89c1d22, type: 3}
   _repeatingRate: 0.5
-  _poolCapacity: 5
+  _poolCapacity: 10
   _poolSize: 10
 --- !u!4 &1679172133
 Transform:
